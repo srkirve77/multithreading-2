@@ -1,4 +1,4 @@
-package com.example.multithreading.basics;
+package com.example.multithreading.a_basics;
 
 public class SumUpExample {
 

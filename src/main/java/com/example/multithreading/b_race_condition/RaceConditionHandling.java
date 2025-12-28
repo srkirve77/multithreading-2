@@ -1,15 +1,16 @@
-package com.example.multithreading.basics;
+package com.example.multithreading.b_race_condition;
 
-import java.util.Random;
+import java.util.*;
 
-public class DemonstrationRaceCondition {
+public class RaceConditionHandling {
 
     public static void main(String args[]) throws InterruptedException {
-          RaceCondition.runTest();
+          RaceConditionFix.runTest();
     }
 }
 
-class RaceCondition {
+// below example is from educative website which is supposed to fix race condition but its not working
+class RaceConditionFix {
 
     int randInt;
     Random random = new Random(System.currentTimeMillis());
@@ -18,9 +19,11 @@ class RaceCondition {
 
         int i = 1000000;
         while (i != 0) {
-            if (randInt % 5 == 0) {
-                if (randInt % 5 != 0)
-                  System.out.println(randInt);
+            synchronized(this) {
+              if (randInt % 5 == 0) {
+                  if (randInt % 5 != 0)
+                    System.out.println(randInt);
+              }
             }
             i--;
         }
@@ -30,15 +33,17 @@ class RaceCondition {
 
         int i = 1000000;
         while (i != 0) {
-            randInt = random.nextInt(1000);
-            i--;
+            synchronized(this) {
+              randInt = random.nextInt(1000);
+              i--;
+            }
         }
     }
 
     public static void runTest() throws InterruptedException {
 
 
-        final RaceCondition rc = new RaceCondition();
+        final RaceConditionFix rc = new RaceConditionFix();
         Thread thread1 = new Thread(new Runnable() {
 
             @Override

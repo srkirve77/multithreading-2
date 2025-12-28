@@ -1,10 +1,10 @@
 package com.example.multithreading;
 
-import com.example.multithreading.basics.TimePassWork;
-import com.example.multithreading.basics.SumUpExample;
+import com.example.multithreading.a_basics.TimePassWork;
+import com.example.multithreading.a_basics.SumUpExample;
 
 public class App {
-    public static void main(String[] args) throws InterruptedException  {
+    public static void main(String[] args) throws InterruptedException {
         /**
         Running TimePassWork 
         Thread thread = new Thread();
