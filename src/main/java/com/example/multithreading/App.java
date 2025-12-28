@@ -1,8 +1,18 @@
 package com.example.multithreading;
 
+import com.example.multithreading.basics.TimePassWork;
+import com.example.multithreading.basics.SumUpExample;
+
 public class App {
-    public static void main(String[] args) {
-        System.out.println("Main thread execution finished." );
-        System.out.println(Thread.currentThread().getName());
+    public static void main(String[] args) throws InterruptedException  {
+        /**
+        Running TimePassWork 
+        Thread thread = new Thread();
+        TimePassWork timePassWork = new TimePassWork();
+        Thread t = new Thread(timePassWork);
+        t.start();        
+        */ 
+
+        SumUpExample.runTest();
     }
 }
