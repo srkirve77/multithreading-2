@@ -146,6 +146,12 @@ class BlockingQueueWithSemaphore<T> {
         size++;
         tail++;
 
+        System.out.print("Queue state: ");
+        for (int i = 0 ; i < tail ; i ++) {
+            System.out.print(array[i] + " -> ");
+        }
+        System.out.println();
+
         semLock.release();
         semConsumer.release();
     }
