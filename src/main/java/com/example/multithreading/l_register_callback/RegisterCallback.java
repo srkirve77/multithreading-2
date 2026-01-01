@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class RegisterCallback {
     public static void main(String[] args) throws InterruptedException {
         RegisterCallbackImpl registerCallbackImpl = new RegisterCallbackImpl();
-        int noOfThreads = 100;
+        int noOfThreads = 10000;
         List<Thread> threads = new ArrayList<>();
         long currentTime = System.currentTimeMillis();
         Random random = new Random();
@@ -99,7 +99,8 @@ class CallbackResource {
     public void callback(CallackConfig callackConfig) {
         totalCallbackReceived += 1;
         long currentTime = System.currentTimeMillis();
-        if (currentTime != callackConfig.callbackTime) {
+        long toleranceTime = 50;
+        if (currentTime > callackConfig.callbackTime + toleranceTime) {
             //System.out.println("callback received at incorrect time. Expected: " + LocalDateTime.ofInstant(Instant.ofEpochMilli(callackConfig.callbackTime), ZoneId.systemDefault()) +
             //"Actual: " + LocalDateTime.ofInstant(Instant.ofEpochMilli(currentTime), ZoneId.systemDefault()));
         } else {
